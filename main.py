@@ -1,3 +1,8 @@
+# Yes I am aware of how messy this is
+
+
+
+
 import turtle
 import random
 
