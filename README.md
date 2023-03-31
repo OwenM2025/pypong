@@ -4,14 +4,14 @@ just my AP Project which I've named Ping!
 controls for the Left paddle are
  
 
-'W' to move up
+  'W' to move up
 
-'S' to move down
+  'S' to move down
 
 
 controls for the Right paddle are
 
 
-'Up arrow' to move up
+  'Up arrow' to move up
 
-'Down arrow' to move down
+  'Down arrow' to move down
