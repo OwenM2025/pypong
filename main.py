@@ -5,16 +5,23 @@
 
 import turtle
 import random
-
+#definition of gamepieces
 l = turtle.Turtle();
 r = turtle.Turtle();
 b = turtle.Turtle();
 s = turtle.Screen();
 t = turtle.Turtle();
 m = turtle.Turtle();
+sw = turtle.Turtle();
 ylist = [-50, -79, -27, 15, 34, 41, 6, 84, 119, 28]
 
+
+
+s.title("Ping!")
+font=("Arial", 25, "normal")
 #def setscreen1():
+
+
 def setgamescreen():
   s.setup(width=650, height=650)
   rectCors = ((-40,10),(40,10),(40,-10),(-40,-10))
@@ -39,8 +46,17 @@ def setgamescreen():
   l.penup()
   r.penup()
   b.penup()
+  sw.penup()
+
+
+b.speed(5)
 p1s = 0
 p2s = 0
+sw.setpos(380, -150)
+sw.write(p1s, False, align = "center")
+sw.setpos(380, 150)
+sw.write(p2s, False, align = "center")
+
 def reset():
   b.sety(random.choice(ylist))
   b.setx(40)
@@ -48,10 +64,10 @@ def reset():
 b.setpos(40, 100)
 l.setpos(-350, 0)
 r.setpos(350, 0)
-b.speed(10)
+
 def moveL():
-  s.onkey(moveUl, 'w')
-  s.onkey(moveDl, 's')
+  s.onkeypress(moveUl, 'w')
+  s.onkeypress(moveDl, 's')
   s.listen()
 def printx():
   s.onkey(px, "e")
@@ -59,10 +75,12 @@ def printx():
 def px():
   print(l.ycor())
 def moveR():
-  s.onkey(moveUr, "Up")
-  s.onkey(moveDr, "Down")
+  s.onkeypress(moveUr, "Up")
+  s.onkeypress(moveDr, "Down")
   s.listen()
   
+def deff1():
+  s.onkey(setgamescreen, "p")
 
 def moveUl():
   l.sety(lypos + 10)
@@ -87,7 +105,7 @@ def limit(lefty, righty):
     r.sety(300)
     
 #end defining functions
-setgamescreen()
+
 while True:
   
   if (b.xcor() < -400):
@@ -96,12 +114,16 @@ while True:
     print("player 1 scored")
     p1s = int(p1s + 1)
     print("score is", p1s, "to", p2s)
+    sw.setpos(380, -150)
+    sw.write(p1s, False, align = "center")
   elif (b.xcor() > 400):
     reset()
     b.right(random.randint(-180,0))
     print("player 2 scored")
     p2s = int(p2s + 1)
     print("score is", p1s, "to", p2s)
+    sw.setpos(380, 150)
+    sw.write(p2s, False, align = "center")
   else:
     lypos = l.ycor()
     rypos = r.ycor()
@@ -109,16 +131,17 @@ while True:
     dr = b.distance(r.xcor(), r.ycor())
     moveL()
     moveR()
+    deff1()
     limit(lypos, rypos)
-    if (dl < 15):
-      b.right(160)
-    elif (dr < 15):
+    if (dl < 30):
       b.left(160)
+    elif (dr < 30):
+      b.right(160)
     else:
       pass
     
 
-    b.fd(2)
+    b.fd(3)
     printx()
   if (b.ycor() <= -320):
     b.left(90)
