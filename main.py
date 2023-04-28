@@ -5,6 +5,7 @@
 
 import turtle
 import random
+
 #definition of gamepieces
 l = turtle.Turtle();
 r = turtle.Turtle();
@@ -17,8 +18,8 @@ ylist = [-50, -79, -27, 15, 34, 41, 6, 84, 119, 28]
 
 
 
-s.title("Ping!")
-font=("Arial", 25, "normal")
+
+
 #def setscreen1():
 
 
@@ -49,7 +50,7 @@ def setgamescreen():
   sw.penup()
 
 
-b.speed(5)
+b.speed(4)
 p1s = 0
 p2s = 0
 sw.setpos(380, -150)
@@ -69,18 +70,13 @@ def moveL():
   s.onkeypress(moveUl, 'w')
   s.onkeypress(moveDl, 's')
   s.listen()
-def printx():
-  s.onkey(px, "e")
-  s.listen()
-def px():
-  print(l.ycor())
+
 def moveR():
   s.onkeypress(moveUr, "Up")
   s.onkeypress(moveDr, "Down")
   s.listen()
   
-def deff1():
-  s.onkey(setgamescreen, "p")
+
 
 def moveUl():
   l.sety(lypos + 10)
@@ -105,7 +101,7 @@ def limit(lefty, righty):
     r.sety(300)
     
 #end defining functions
-
+setgamescreen()
 while True:
   
   if (b.xcor() < -400):
@@ -131,7 +127,7 @@ while True:
     dr = b.distance(r.xcor(), r.ycor())
     moveL()
     moveR()
-    deff1()
+    
     limit(lypos, rypos)
     if (dl < 30):
       b.left(160)
@@ -142,10 +138,12 @@ while True:
     
 
     b.fd(3)
-    printx()
+    
   if (b.ycor() <= -320):
     b.left(90)
+    
   elif (b.ycor() >= 300):
     b.right(90)
+
   else:
       pass
